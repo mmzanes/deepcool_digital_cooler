@@ -4,7 +4,7 @@ A universal Python controller for DeepCool digital display coolers that provides
 
 ## 🚀 Features
 
-- **Universal Device Support**: Auto-detects DeepCool AG400, AG620, and compatible models
+- **Universal Device Support**: Auto-detects DeepCool AG400, AG620, AK500, and compatible models
 - **Real CPU Temperature**: Uses LibreHardwareMonitor for accurate temperature readings
 - **Cross-Platform**: Works on Windows, Linux, and macOS
 - **Multiple Display Modes**: Temperature, CPU usage, or both (alternating/simultaneous)
@@ -17,6 +17,7 @@ A universal Python controller for DeepCool digital display coolers that provides
 |-------|---------|--------|
 | AG620 | 0x3633:0x0008 | ✅ Fully Supported |
 | AG400 | 0x3633:0x0009 | ✅ Fully Supported |
+| AK500 | 0x3633:0x000B | ✅ Fully Supported |
 | Other DeepCool Digital | 0x3633:0x000A | ⚠️ Basic Support |
 
 ## 🛠️ Installation

@@ -18,6 +18,12 @@ DEVICE_CONFIGS = {
         "mode": "complex",
         "rearrange_digits": False,
         "packet_size": 64
+    },
+    (0x3633, 0x000B): {
+        "name": "AK500",
+        "mode": "complex",
+        "rearrange_digits": True,
+        "packet_size": 64
     }
 }
 
