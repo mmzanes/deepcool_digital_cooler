@@ -344,10 +344,20 @@ def get_librehardwaremonitor_temp():
                                 if not hasattr(get_librehardwaremonitor_temp, "_last_temp"):
                                         get_librehardwaremonitor_temp._last_temp = temp
                                 last_temp = get_librehardwaremonitor_temp._last_temp
-                                if (temp - last_temp) > last_temp * 0.10:
-                                        # Ignore spike, return last value
-                                        print(f"Spike detected: {temp}°C (last: {last_temp}°C), ignoring")
+                                # Track consecutive spikes
+                                if not hasattr(get_librehardwaremonitor_temp, "_spike_count"):
+                                    get_librehardwaremonitor_temp._spike_count = 0
+
+                                if (temp - last_temp) > last_temp * 0.1:
+                                    get_librehardwaremonitor_temp._spike_count += 1
+                                    if get_librehardwaremonitor_temp._spike_count < 3:
+                                        print(f"Spike detected: {temp}°C (last: {last_temp}°C), ignoring (spike count: {get_librehardwaremonitor_temp._spike_count})")
                                         return round(last_temp)
+                                    else:
+                                        print(f"Spike detected 3 times in a row, accepting new temp: {temp}°C")
+                                        get_librehardwaremonitor_temp._spike_count = 0
+                                else:
+                                    get_librehardwaremonitor_temp._spike_count = 0
                                 get_librehardwaremonitor_temp._last_temp = temp
                                 return round(temp)
 
